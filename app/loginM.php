@@ -10,14 +10,14 @@
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     
-<link rel="stylesheet" href="login2.css">
+<link rel="stylesheet" href="../assets/Scripts/loginM.css">
     
 
   </head>
 
 
 <div class="wrapper">
-   <form class="form-signin">
+   <form action="classes/authenticate.php" method="post" class="form-signin">
       <h2 class="form-signin-heading">Please login</h2>
       <input type="text" class="form-control" name="username" placeholder="Email Address/username" required="" autofocus="" />
       <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      

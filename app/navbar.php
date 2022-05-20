@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="../assets/Scripts/navbar.css">
 </head>
 
 <body>
@@ -13,9 +13,9 @@
 
     <nav id="nav">
         <ul>
-        <   <li><a href="#">Home</a></li>
-            <li><a href="#">SignUp</a></li>
-            <li><a href="#">Login</a></li>
+        <   <li><a href="index.php">Home</a></li>
+            <li><a href="signup.php" target="_blank">SignUp</a></li>
+            <li><a href="loginM.php" target="_blank">Login</a></li>
             <li><a href="#">About Us</a></li>
         </ul>
     </nav>
