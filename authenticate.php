@@ -1,5 +1,6 @@
 <?php
-include 'connection.php';
+include 'classes/Database.php';
+
 
 $email=$_POST["email"]; 
 $password=$_POST["password"] ;
