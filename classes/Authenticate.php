@@ -8,9 +8,11 @@ class Authenticate
         $email=$_POST["email"];
         $password=$_POST["password"]; 
 
+        $hashpassword = password_hash($password,PASSWORD_DEFAULT);
+
 
         $sql = "INSERT INTO users (username,useremail,userpwd)
-        VALUES ('$username', '$email', '$password')";
+        VALUES ('$username', '$email', '$hashpassword')";
 
         
         if($conn->query($sql) === TRUE) {
@@ -28,13 +30,19 @@ class Authenticate
         $email=$_POST["email"];
         $password=$_POST["password"]; 
 
+        $hashpassword = password_hash($password,PASSWORD_DEFAULT);
+
         $sql = "SELECT * FROM users WHERE useremail ='{$email}' LIMIT 1";
         $result = mysqli_query($conn,$sql);
 
       if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        if($row['userpwd'] == $password){
+        if(password_verify($password,$hashpassword)){
+            session_start();
+            $_SESSION["user_id"] =$row["user_id"];
+            $_SESSION["username"] = $row["username"];
             echo "Login Succesful";
+            echo "Welcome ".$_SESSION["username"];
         }
         else{
             echo "Incorrect password";
@@ -44,6 +52,10 @@ class Authenticate
            echo "User does not exist";   
       }
 
+    }
+    public function logout(){
+        session_destroy();
+        echo "Logging Out succcesful!";
     }
 
 }
