@@ -1,84 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap core CSS -->
-    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-	<link rel="stylesheet" href="vendor/bootstrap/css/cerulean.theme.min.css">
-	
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/login.css">
 
-	<title>Document</title>
-	<link rel="stylesheet" href="../assets/Scripts/items.css">
-</head>
-<body>
-	<!-- Page Content -->
-    <div class="container-fluid">
-	  <div class="row">
-		<div class="col-lg-2">
-		<h1 class="my-4"></h1>
-		</div>
-		 <div class="col-lg-10">
-			<section class="items justify-content-center">
-				  <div class="card-header "><h2>Item Details</h2></div>
-				  <div class="card-body">
-		
-					<!-- Tab panes for item details and image sections -->
-					<section class="tab-content-main">
-					<div class="tab-content" class="col-4" >
-						<div id="itemDetailsTab" class="container-fluid tab-pane active">
-							<br>
-							<!-- Div to show the ajax message from validations/db submission -->
-							<div id="itemDetailsMessage">
+    <title>LOGIN FORM</title>
+  </head>
+  <body>
+    <section class="container-fluid bg row justify-content-center">
+      <div class="col-4">
+	  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Item Id</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Product ID</th>
+      <th scope="col">Price</th>
+	  <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </section>
 
-							<form action="../classes/Inventory_item.php" method="post">
-							 <input type="hidden" value="Inventory_item" name="object">
-							 <input type="hidden" value="addItem" name="action">
-    							  <div class="form-row">
-								<div class="form-group col-md-3" style="display:inline-block">
-								  <label for="itemDetailsItemNumber">Item Number</label>
-								  <input type="text" class="form-control" name="itemid" id="itemid" autocomplete="off">
-								</div><br>
-								<div class="form-group col-md-6">
-									<label for="itemDetailsItemName">Item Name<span class="requiredIcon">*</span></label>
-									<input type="text" class="form-control" name="itemname" id="itemname" autocomplete="off">
-							 </div><br>
-								<div class="form-group col-md-3">
-								  <label for="itemDetailsProductID">Product ID</label>
-								  <input class="form-control invTooltip" type="number" readonly  id="productid" name="productid" title="This will be auto-generated when you add a new item">
-								</div><br>
-							
-							  
-								  <div class="form-group col-md-2">
-									<label for="itemDetailsStatus">Status</label>
-									<select id="itemDetailsStatus" name="status" class="form-control chosenSelect"title="This will be auto-generated when you add a new item">
-										<?php include('inc/statusList.html'); ?>
-									</select>
-								  </div><br>
-							  </div>
-								<div class="form-group col-md-3">
-									<div id="imageContainer"></div>
-								</div>
-							  </div>
-							  <button type="submit" id="addItem" name="addItem" class="btn btn-success">Add Item</button>
-							  <button type="button" id="updateItemDetailsButton" class="btn btn-primary">Update</button>
-							  <button type="button" id="deleteItem" class="btn btn-danger">Delete</button>
-							  <button type="reset" class="btn" id="itemClear">Clear</button>
-							</form>
-						</div>
-						<div id="itemImageTab" class="container-fluid tab-pane fade">
-							<br></section>
-							<div id="itemImageMessage"></div>
-							  <br>
-							</form>
-						</div>
-					</div>
-			    </div> 
-			</div>
-		 </section>
-	</form>
-</body>
-</html>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    -->
     
+  </body>
+</html>
