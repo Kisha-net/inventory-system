@@ -1,4 +1,4 @@
-<?php
+ <?php
 include 'classes/Database.php';
 
 $conn = Database::connect();
@@ -10,5 +10,6 @@ if ($conn->connect_error) {
 }
 else{
     echo "Success";
-}
+}  
+
 
