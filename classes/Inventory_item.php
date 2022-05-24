@@ -1,11 +1,11 @@
 <?php
-include '../classes/Database.php';
+include 'Database.php';
 
 $object=$_POST["object"];
 $action=$_POST["action"];
 
 if($object == "Inventory_item"){
-    include 'classes/Inventory_item.php';
+    include '../classes/Inventory_item.php';
     $obj=new InventoryItem();
 
     switch($action){

@@ -33,10 +33,10 @@
 							<!-- Div to show the ajax message from validations/db submission -->
 							<div id="itemDetailsMessage">
 
-							<form action="classes/iInventory_item.php" method="post">
-							<input type="hidden" value="Authenticate" name="object">
-    						<input type="hidden" value="login" name="action">
-							  <div class="form-row">
+							<form action="../classes/Inventory_item.php" method="post">
+							 <input type="hidden" value="Inventory_item" name="object">
+							 <input type="hidden" value="addItem" name="action">
+    							  <div class="form-row">
 								<div class="form-group col-md-3" style="display:inline-block">
 								  <label for="itemDetailsItemNumber">Item Number</label>
 								  <input type="text" class="form-control" name="itemid" id="itemid" autocomplete="off">
@@ -62,7 +62,7 @@
 									<div id="imageContainer"></div>
 								</div>
 							  </div>
-							  <button type="submit" id="addItem" class="btn btn-success">Add Item</button>
+							  <button type="submit" id="addItem" name="addItem" class="btn btn-success">Add Item</button>
 							  <button type="button" id="updateItemDetailsButton" class="btn btn-primary">Update</button>
 							  <button type="button" id="deleteItem" class="btn btn-danger">Delete</button>
 							  <button type="reset" class="btn" id="itemClear">Clear</button>
