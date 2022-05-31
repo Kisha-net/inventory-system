@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="en">
 <?php
 include 'base.php';
 ?>
@@ -19,9 +17,9 @@ include 'base.php';
 	  <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Item Id</th>
-          <th scope="col">Item Name</th>
-          <th scope="col">Product ID</th>
+          <th scope="col">Order Id</th>
+          <th scope="col">Order Name</th>
+          <th scope="col">Item ID</th>
           <th scope="col">Price</th>
         <th scope="col">Status</th>
         </tr>
@@ -54,10 +52,6 @@ include 'base.php';
     </table>
   </div>
 </section>
-
 <?php
   include 'includes/footer.php';
 ?>
-
-   
-    

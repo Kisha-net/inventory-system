@@ -43,7 +43,7 @@ class Authenticate
             $_SESSION["username"] = $row["username"];
             // echo "Login Succesful";
             // echo "Welcome ".$_SESSION["username"];
-            header("location:app/dashboard.php");
+            header("location:app/inventory_items.php");
         }
         else{
             echo "Incorrect password";

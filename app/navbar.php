@@ -1,9 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<?php
-include 'base.php';
+<?
+include 'includes/head.php';
 ?>
-  <?php
+<body>
+
+    <button id="button"> &#x2630;</button>
+
+    <nav id="nav">
+        <ul>
+        <   <li><a href="index.php">Home</a></li>
+            <li><a href="signup.php" target="_blank">SignUp</a></li>
+            <li><a href="loginM.php" target="_blank">Login</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+    </nav>
+
+<?php
     ini_set('display_errors', 1);
 
     include '../classes/Database.php';
@@ -55,9 +68,27 @@ include 'base.php';
   </div>
 </section>
 
-<?php
-  include 'includes/footer.php';
-?>
 
-   
-    
+    <script>
+
+        const btn = document.getElementById('button');
+        const nav = document.getElementById('nav');
+
+        btn.addEventListener('click', () => {
+
+            nav.classList.toggle('active');
+            btn.classList.toggle('active');
+
+        })
+
+       
+        
+        
+
+
+
+    </script>
+
+</body>
+
+</html>
