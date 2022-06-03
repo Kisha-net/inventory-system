@@ -9,7 +9,11 @@
     <input type="text" class="form-control form-control-primary w-100" type="search" placeholder="Search" aria-label="Search">
         <ul class ="navbar-nav px-3">
             <li class ="nav-item text-nowrap">
-                <a class="nav-link"href="">LOG OUT</a>
+                <a class="nav-link" href="../index.php" name="logout" id="logout" onclick="logout()" >LOG OUT</a>
+                <form id="logout_form" action="post">
+                    <input type="hidden" value="Authenticate" name="object">
+                    <input type="hidden" value="logout" name="action">
+                </form>
             </li>
         </ul>
 </nav>
@@ -35,6 +39,14 @@
         </div>
     </div>
 </div>
+<script>
+    // document.getElementById("logout").onClick = "logout()";
+    function logout(){
+        // alert("Are you sure you want to leave!");
+        document.getElementById("logout").preventDefault();
+        document.getElementById("logout_form").submit();
 
-
-   
+    }
+    
+    document.getElementById("logout_form");
+</script>  

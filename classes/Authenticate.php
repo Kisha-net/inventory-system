@@ -60,7 +60,7 @@ class Authenticate
             }
         } 
         else {
-             header("location:app/login.php?error=unknown user");
+             header("location:app/login.php?error=Unknown User");
                 echo "Error: " . $sql . "<br>" . $conn->error;
         
         }
@@ -68,8 +68,11 @@ class Authenticate
         }
     
         public function logout(){
+            unset($_SESSION["user_id"]);
+            unset($_SESSION["username"]);
+
             session_destroy();
-            echo "Logging Out succcesful!";
+            header("location:index.php");
         } 
 
         public function check_user_exist($conn,$email){

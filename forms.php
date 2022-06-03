@@ -1,8 +1,14 @@
 <?php
 ini_set('display_errors', 1);
 
-$object=$_POST["object"];
-$action=$_POST["action"];
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $object=$_POST["object"];
+    $action=$_POST["action"];
+}
+else{
+    $object=$_GET["object"];
+    $action=$_GET["action"];
+}
 
 if($object == "Authenticate"){
     include 'classes/Authenticate.php';
@@ -15,6 +21,10 @@ if($object == "Authenticate"){
             
         case'login':
             $obj->login();
+            break;
+        
+        case'logout':
+            $obj->logout();
             break;
 
         default:
