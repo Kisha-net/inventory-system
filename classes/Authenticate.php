@@ -1,68 +1,85 @@
 <?php
 include 'Database.php';
+
 class Authenticate
 {    
-    public function signup(){
-        $conn = Database::connect();
-        $username=$_POST["username"];
-        $email=$_POST["email"];
-        $password=$_POST["password"]; 
-
-        $hashpassword = password_hash($password,PASSWORD_DEFAULT);
-
-
-        $sql = "INSERT INTO users (username,useremail,userpwd)
-        VALUES ('$username', '$email', '$hashpassword')";
-
+        public function signup(){
+            $conn = Database::connect();
+            $username=$_POST["username"];
+            $email=$_POST["email"];
+            $password=$_POST["password"]; 
+            $passwordRepeat=$_POST["passwordRepeat"]; 
         
-        if($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-        } 
-        else{
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+
+             $hashpassword = password_hash($password,PASSWORD_DEFAULT);
+             $hashpasswordrepeat = password_hash($passwordRepeat,PASSWORD_DEFAULT);
+        
+
+            $sql = "INSERT INTO users (username,useremail,userpwd,passwordRepeat)
+            VALUES ('$username', '$email', '$hashpassword','$hashpasswordrepeat')";
+
             
-        $conn->close();
-    }
+            if($conn->query($sql) === TRUE) {
 
-    public function login(){
-        $conn = Database::connect();
-        $email=$_POST["email"];
-        $password=$_POST["password"]; 
-
-        $hashpassword = password_hash($password,PASSWORD_DEFAULT);
-
-        $sql = "SELECT * FROM users WHERE useremail ='{$email}' LIMIT 1";
-        $result = mysqli_query($conn,$sql);
-
-      if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if(password_verify($password,$hashpassword)){
-            session_start();
-            $_SESSION["user_id"] =$row["user_id"];
-            $_SESSION["username"] = $row["username"];
-            // echo "Login Succesful";
-            // echo "Welcome ".$_SESSION["username"];
-            header("location:app/inventory_items.php");
+                // echo "New record created successfully";
+                header("location:app/login.php");
+            } 
+            else{
+                header("location:app/signup.php?error=Duplicate email");
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+                
+            $conn->close();
+        
         }
-        else{
-            echo "Incorrect password";
+
+       public function login(){
+            $conn = Database::connect();
+            $email=$_POST["email"];
+            $password=$_POST["password"]; 
+
+            $hashpassword = password_hash($password,PASSWORD_DEFAULT);
+
+            $sql = "SELECT * FROM users WHERE useremail ='{$email}' LIMIT 1";
+            $result = mysqli_query($conn,$sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            if(password_verify($password,$row['userpwd'])){
+                session_start();
+                $_SESSION["user_id"] =$row["user_id"];
+                $_SESSION["username"] = $row["username"];
+                echo "Login Succesful";
+                echo "Welcome ".$_SESSION["username"];
+                header("location:app/inventory_items.php");
+                
+            }
+            else{
+                header("location:app/login.php?error=Incorrect Password");
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } 
+        else {
+             header("location:app/login.php?error=unknown user");
+                echo "Error: " . $sql . "<br>" . $conn->error;
+        
         }
-      } 
-      else {
-           echo "User does not exist";   
-      }
 
-    }
-    public function logout(){
-        session_destroy();
-        echo "Logging Out succcesful!";
-    }
-
-}
-
-
-
-
-
+        }
     
+        public function logout(){
+            session_destroy();
+            echo "Logging Out succcesful!";
+        } 
+
+        public function check_user_exist($conn,$email){
+            $sql = "SELECT email FROM users WHERE useremail ='{$email}";
+            $result = mysqli_query($conn,$sql) ;
+                  if (mysqli_num_rows($result) > 0) {
+                    echo "Username already exist";
+                    header("location:../app/signup.php");
+                  } else {
+                        header("location:../app/base.php");
+                  }
+        }
+  }

@@ -8,7 +8,7 @@ include 'base.php';
 
     $conn = Database::connect(); 
 
-    $sql = "SELECT * FROM item";
+    $sql = "SELECT * FROM orders";
     $result = mysqli_query($conn,$sql);
 ?>
 
@@ -19,26 +19,25 @@ include 'base.php';
         <tr>
           <th scope="col">Order Id</th>
           <th scope="col">Order Name</th>
-          <th scope="col">Item ID</th>
-          <th scope="col">Price</th>
-        <th scope="col">Status</th>
+          <th scope="col">Order Date</th>
+          <th scope="col">Item Id</th>
         </tr>
       </thead>
       <tbody>
       <?php
         if (mysqli_num_rows($result) > 0) {
           while($row = mysqli_fetch_assoc($result)){
-            $item_id = $row["itemid"];
-            $item_name = $row["itemname"];
-            $product_id = $row["productid"];
-            $item_status = $row["itemstatus"];
+            $order_id = $row["order_id"];
+            $order_name = $row["order_name"];
+            $order_date = $row["order_date"];
+            $itemid = $row["itemid"];
+
 
             echo " <tr>
+              <td>".$row["order_id"]."</td>
+              <td>".$row["order_name"]."</td>
+              <td>".$row["order_date"]."</td>
               <td>".$row["itemid"]."</td>
-              <td>".$row["itemname"]."</td>
-              <td>".$row["productid"]."</td>
-              <td></td>
-              <td>".$row["itemstatus"]."</td>
             </tr>";
               
           }

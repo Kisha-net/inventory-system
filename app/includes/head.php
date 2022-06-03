@@ -14,3 +14,27 @@
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/base.css">
 </head>
+<body>
+    <?php
+        // if (isset($_GET["error"])) {
+        //     echo '
+        //         <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
+        // }else if (isset($_GET["error"])) {
+        //     echo '
+        //         <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
+        // }
+        
+
+        if (isset($_GET["error"])){
+            if($_GET["error"] == "Duplicate email"){
+                echo '
+                <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
+            }else if($_GET["error"] == "Incorrect Password"){
+                echo '
+                <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
+        }else if($_GET["error"] == "unknown user"){
+            echo '
+            <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
+        }
+    }
+    ?>
