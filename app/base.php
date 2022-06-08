@@ -29,7 +29,7 @@
                     <a class="nav-link" href="../app/orders.php">Orders</a>
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="../index.php">Link</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Disabled</a>

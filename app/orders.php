@@ -12,15 +12,16 @@ include 'base.php';
     $result = mysqli_query($conn,$sql);
 ?>
 
-<section class="container-fluid bg row justify-content-center">
+<section class="container-fluid bg row justify-content-center format">
   <div class="col-8">
 	  <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Order Id</th>
-          <th scope="col">Order Name</th>
+          <th scope="col">Order status</th>
           <th scope="col">Order Date</th>
-          <th scope="col">Item Id</th>
+          <th scope="col">price</th>
+          <th scope="col">customer ID</th>
         </tr>
       </thead>
       <tbody>
@@ -30,14 +31,16 @@ include 'base.php';
             $order_id = $row["order_id"];
             $order_name = $row["order_name"];
             $order_date = $row["order_date"];
-            $itemid = $row["itemid"];
+            $price = $row["price"];
+            $customer_Id = $row["customer_id"];
 
 
             echo " <tr>
               <td>".$row["order_id"]."</td>
               <td>".$row["order_name"]."</td>
               <td>".$row["order_date"]."</td>
-              <td>".$row["itemid"]."</td>
+              <td>".$row["price"]."</td>
+              <td>".$row["customer_id"]."</td>
             </tr>";
               
           }

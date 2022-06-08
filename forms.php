@@ -33,12 +33,12 @@ if($object == "Authenticate"){
     }
 }
 
-else if($object == "InventoryItem"){
-    include '../classes/Inventory_item.php';
+if($object == "InventoryItem"){
+    include 'classes/InventoryItem.php';
     $obj=new InventoryItem();
 
     switch($action){
-        case'addItem':
+        case 'addItem':
             $obj->addItem();
             break;
             

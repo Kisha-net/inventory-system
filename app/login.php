@@ -28,6 +28,7 @@ include 'includes/head.php';
                 <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
             </label>
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            
         </form>
       </div>
     </section>
