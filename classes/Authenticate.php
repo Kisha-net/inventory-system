@@ -51,7 +51,7 @@ class Authenticate
                 $_SESSION["username"] = $row["username"];
                 echo "Login Succesful";
                 echo "Welcome ".$_SESSION["username"];
-                header("location:app/inventory_items.php");
+                header("location:app/dashboard.php");
                 
             }
             else{

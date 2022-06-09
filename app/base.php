@@ -22,6 +22,9 @@
         <div class="col-md-2 bg-light d-none d-md-block sidebar">
             <div class ="left-sidebar">
             <ul class="nav flex-column">
+            <li class="nav-item">
+                    <a class="nav-link active" href="../app/dashboard.php">Dashboard</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="../app/inventory_items.php">Items</a>
                 </li>
@@ -29,7 +32,7 @@
                     <a class="nav-link" href="../app/orders.php">Orders</a>
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link" href="../index.php">Link</a>
+                    <a class="nav-link" href="../app/customers.php">customers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Disabled</a>

@@ -3,12 +3,12 @@
   <?php
 include 'includes/head.php';
 
-  if (isset($_SESSION['user_id'])) {
-    echo 'Welcome '.$_SESSION['username'];
-    header("location:inventory_items.php");
-  }else{
-    echo 'Invalid';
-  }
+  // if (isset($_SESSION['user_id'])) {
+  //   echo 'Welcome '.$_SESSION['username'];
+  //   header("location:inventory_items.php");
+  // }else{
+  //   echo 'Invalid';
+  // }
   ?>
     <section class="container-fluid bg row justify-content-center">
       <div class="col-4">
