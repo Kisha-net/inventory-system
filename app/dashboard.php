@@ -2,22 +2,21 @@
 include 'includes/head.php';
 include 'base.php';
 
-//   if (isset($_SESSION['user_id'])) {
-//     echo 'Welcome '.$_SESSION['username'];
-//     echo "Welcome to the Dashboard";
-//     header("location:inventory_items.php");
-//   }else{
-//     echo 'Invalid';
-//   }
-  ?> 
-<section class="container-fluid bg row justify-content-center dashboard">
+?> 
+<section class="container-fluid bg row justify-content-center dashboard ">
     <div class="jumbotron">
-        <h1 class="display-4">Hello </h1>
-        <p class="lead">WELCOME TO THE DASHBOARD</p>
+        <?php
+        if (isset($_SESSION['user_id'])) {
+            echo "<h1 class='display-4'>Hello"."," .$_SESSION['username'] ."</h1>";
+            echo '<p class="lead">WELCOME TO THE SHARK DASHBOARD</p>';
+        //   }else{
+        //     echo 'Invalid';
+         }
+        ?>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p>You can easily access,update and view all the Inventories bla bla bla bla bla bla bla bla bla bla bla bla.</p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a class="btn btn-primary btn-lg" href="learnmore.php" role="button">Learn more</a>
         </p>
     </div>
 </section>

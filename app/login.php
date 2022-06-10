@@ -2,13 +2,16 @@
 <html lang="en">
   <?php
 include 'includes/head.php';
+// if (isset($_SESSION['user_id'])) {
+//   header("location:../app/dashboard.php");
+// }
+// // else{
+// //   if($_SERVER['PHP_SELF'] != "/inventory-system/app/login.php"){
+// //       header("location:login.php");
+// //   }
+  
+// // }
 
-  // if (isset($_SESSION['user_id'])) {
-  //   echo 'Welcome '.$_SESSION['username'];
-  //   header("location:inventory_items.php");
-  // }else{
-  //   echo 'Invalid';
-  // }
   ?>
     <section class="container-fluid bg row justify-content-center">
       <div class="col-4">

@@ -1,14 +1,17 @@
 <?php
 ini_set('display_errors', 1);
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $object=$_POST["object"];
     $action=$_POST["action"];
+  
 }
 else{
     $object=$_GET["object"];
     $action=$_GET["action"];
 }
+
 
 if($object == "Authenticate"){
     include 'classes/Authenticate.php';

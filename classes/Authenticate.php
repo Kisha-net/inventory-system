@@ -9,11 +9,12 @@ class Authenticate
             $email=$_POST["email"];
             $password=$_POST["password"]; 
             $passwordRepeat=$_POST["passwordRepeat"]; 
-        
+
+        if($password == $passwordRepeat){
 
              $hashpassword = password_hash($password,PASSWORD_DEFAULT);
              $hashpasswordrepeat = password_hash($passwordRepeat,PASSWORD_DEFAULT);
-        
+
 
             $sql = "INSERT INTO users (username,useremail,userpwd,passwordRepeat)
             VALUES ('$username', '$email', '$hashpassword','$hashpasswordrepeat')";
@@ -30,8 +31,11 @@ class Authenticate
             }
                 
             $conn->close();
-        
+        }else{
+            header("location:app/signup.php?error=Passwords Do Not Match");
+                // echo "Error: " . $sql . "<br>" . $conn->error;
         }
+    }
 
        public function login(){
             $conn = Database::connect();
@@ -49,9 +53,10 @@ class Authenticate
                 session_start();
                 $_SESSION["user_id"] =$row["user_id"];
                 $_SESSION["username"] = $row["username"];
-                echo "Login Succesful";
-                echo "Welcome ".$_SESSION["username"];
+                // echo "Login Succesful";
+                // echo "Welcome ".$_SESSION["username"];
                 header("location:app/dashboard.php");
+               
                 
             }
             else{
@@ -68,11 +73,18 @@ class Authenticate
         }
     
         public function logout(){
-            unset($_SESSION["user_id"]);
-            unset($_SESSION["username"]);
+            // // include 'app/includes/head.php';
+            // session_destroy();
+            // header("location:app/login.php");
+            include 'classes/Authenticate.php';
+                session_start();
+                if (isset($_SESSION['user_id'])) {
+                    session_destroy();
+                    header("location:app/login.php");
+}
+   
 
-            session_destroy();
-            header("location:index.php");
+            
         } 
 
         public function check_user_exist($conn,$email){
