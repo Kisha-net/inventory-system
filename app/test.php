@@ -1,1 +1,2 @@
 
+-- VALUES ('$price','$stock')";

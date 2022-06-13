@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+<section class="container-fluid bg row justify-content-center format"> 
     <?php
     
         if (isset($_GET["error"])){
@@ -17,7 +18,13 @@
                 <div class="alert alert-danger" role="alert">'.$_GET["error"].'</div>';
         }
 
-        session_start();
+        if (isset($_GET["success"])){
+            echo '
+                <div class="alert alert-success" role="alert">'.$_GET["success"].'</div>';
+        }
+
+
+        // session_start();
 
     
     ?>

@@ -2,8 +2,8 @@
 include 'includes/head.php';
 include 'base.php';
 
-?> 
-<section class="container-fluid bg row justify-content-center dashboard ">
+ ?> 
+<!--  <section class="container-fluid bg row justify-content-center dashboard "> -->
     <div class="jumbotron">
         <?php
         if (isset($_SESSION['user_id'])) {

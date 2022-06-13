@@ -53,9 +53,11 @@ class Authenticate
                 session_start();
                 $_SESSION["user_id"] =$row["user_id"];
                 $_SESSION["username"] = $row["username"];
+                if (isset($_SESSION['user_id'])) {
                 // echo "Login Succesful";
                 // echo "Welcome ".$_SESSION["username"];
                 header("location:app/dashboard.php");
+                }
                
                 
             }
