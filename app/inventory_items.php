@@ -2,6 +2,8 @@
 <html lang="en">
 <?php
 include 'base.php';
+include 'includes/head.php';
+
 ?>
   <?php
     ini_set('display_errors', 1);
@@ -10,11 +12,9 @@ include 'base.php';
 
 
 ?>
-
-<section class="container-fluid bg row justify-content-center format"> 
   <div class="col-8">
 	  <table class="table">
-      <thead class="thead-dark">
+      <thead class="thead-dark"> 
         <tr>
           <th scope="col">Item Id</th>
           <th scope="col">Item Name</th>
@@ -37,26 +37,40 @@ include 'base.php';
             $stock = $row["stock"];
             $price = $row["price"];
 
-            echo " <tr>
+            echo " <tr id='$item_id'>
             <th>".$row["item_id"]."</th>
             <td>".$row["item_name"]."</td>
             <td>".$row["stock"]."</td>
             <td>".$row["price"]."</td>
+            <td><a type=\"submit\" class=\"btn btn-primary\"  name=\"update\" onclick =\"update()\">Update Item</a></td>
+            <td><button type=\"button\" class=\"btn btn-secondary\" name=\"Delete\" onclick=\"delete_item()\">Delete Item</button></td>
           </tr>";
-          }
         }
+      }
         else{
           echo "No records Found";
         }
+       
         ?>
-
       </tbody>
-    </table>
-  
-  <form>
-    <a type="submit" class="btn btn-primary" href ="form_inventory.php">ADD ITEM</a>
+        </table>
+         <script>
+          function update(){
+            var rowId = event.target.parentNode.parentNode.id;
+           //alert(rowId);
+            window.location.href = "form_inventory.php?item="+rowId;
+          }
+          function delete_item(){
+            var rowId = event.target.parentNode.parentNode.id;
+           //alert(rowId);
+            window.location.href = "form_inventory.php?item="+rowId;
+          }
+        </script> 
    
-  </form>
+<form>
+    <a type="submit" class="btn btn-primary" href ="form_inventory.php">ADD ITEM</a>
+</form>
+
   </div>
 </section>
 

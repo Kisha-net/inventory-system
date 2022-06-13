@@ -2,7 +2,7 @@
     include 'base.php';
 ?>
 
-<section class="container-fluid bg row justify-content-center format">
+<!-- <section class="container-fluid bg row justify-content-center format"> -->
   <div class="col-8">
 	  <table class="table">
       <thead class="thead-dark">

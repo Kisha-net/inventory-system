@@ -45,9 +45,9 @@ if($object == "InventoryItem"){
             $obj->addItem();
             break;
             
-        // case'updateItem':
-        //     $obj->updateItem();
-        //     break;
+        case'updateItem':
+            $obj->updateItem();
+            break;
 
         // case'deleteItem':
         //     $obj->deleteItem();

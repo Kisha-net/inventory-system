@@ -4,14 +4,9 @@
 include 'includes/head.php';
 // if (isset($_SESSION['user_id'])) {
 //   header("location:../app/dashboard.php");
+// }else{
+//   header("location:../app/login.php");
 // }
-// // else{
-// //   if($_SERVER['PHP_SELF'] != "/inventory-system/app/login.php"){
-// //       header("location:login.php");
-// //   }
-  
-// // }
-
   ?>
     <section class="container-fluid bg row justify-content-center">
       <div class="col-4">

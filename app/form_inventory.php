@@ -1,24 +1,49 @@
 <?php
 include 'base.php';
+include '../classes/Database.php';
+
+$item_id = $_GET['item'];
+
+if($item_id==''){
+$action="addItem";
+$item_name ='';
+$stock = '';
+$price = '';
+}else{
+    $action="updateItem";
+
+    $conn = Database::connect(); 
+    $sql = "SELECT * FROM items WHERE item_id ='$item_id' ";
+    $result = mysqli_query($conn,$sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+          $item_id = $row["item_id"];
+          $item_name = $row["item_name"];
+          $stock = $row["stock"];
+          $price = $row["price"];
+        }
+}
+
 ?>
-<section class="container-fluid bg row justify-content-center">
     <div class="col-6 items">
     <form action="../forms.php" method="post">
         <input type="hidden" value="InventoryItem" name="object">
-        <input type="hidden" value="addItem" name="action">
+        <input type="hidden" value="<?=$item_id;?>" name="item_id">
+        <input type="hidden" value="<?=$action;?>" name="action">
         <div class="form-group">
-        <label for="Itemname">Item Name</label>
-        <input type="text" class="form-control" id="itemname" name ="item_name">
+        <label for="Itemname">Item Name </label>
+        <input type="text" class="form-control" value="<?=$item_name;?>" id="itemname" name ="item_name">
         </div>
         <div class="form-group">
         <label for="price">Price</label>
-        <input type="text" class="form-control" name ="price" id="price">
+        <input type="text" class="form-control" value="<?=$price;?>" name ="price" id="price">
         </div>
         <div class="form-group col-md-4">
             <label for="inputStatus">Stock</label>
             <select id="inputStatus" name ="stock" class="form-control">
-            <option>Available</option>
-            <option>Depleted</option>
+            <option value="Available">Available</option>
+            <option value="Depleted">Depleted</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

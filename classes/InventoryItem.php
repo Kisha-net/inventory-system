@@ -13,34 +13,38 @@ class InventoryItem{
         $sql = "INSERT INTO items (item_name,price,stock)
         VALUES ('$item_name' ,'$price','$stock')";
 
-    $sql = "SELECT * FROM items";
-    $result = mysqli_query($conn,$sql);
+        if($conn->query($sql) === TRUE) {
 
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)){
-           echo " <tr>
-            <th>".$row["item_id"]."</th>
-            <td>".$row["item_name"]."</td>
-            <td>".$row["stock"]."</td>
-            <td>".$row["price"]."</td>
-          </tr>";
-            
+            echo "New record created successfully";
+            header("location:app/inventory_items.php");
+        } 
+        else{
+            // header("location:app/signup.php?error=Duplicate email");
+            echo "Could not add a record";
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
-
-    if($conn->query($sql) === TRUE) {
-
-        echo "New record created successfully";
-        // header("location:../app/inventory_item.php");
     } 
-    else{
-        // header("location:app/signup.php?error=Duplicate email");
-        echo "Could not add a record";
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-    }
-    else{
-        echo "No records Found";
-    }
+
+    public function updateItem(){
+        $conn = Database::connect();
+        $item_id=$_POST["item_id"];
+        $item_name=$_POST["item_name"];
+        $stock=$_POST["stock"];
+        $price=$_POST["price"];
+
+        $sql = "UPDATE items
+        SET item_name ='$item_name', price = '$price' ,stock='$stock'
+        WHERE item_id = '$item_id'";
+        
+
+        if($conn->query($sql) === TRUE) {
+            header("location:app/inventory_items.php?success=Success");
+        } 
+        else{
+            // header("location:app/signup.php?error=Duplicate email");
+            echo "Could not add a record";
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } 
 }
         
