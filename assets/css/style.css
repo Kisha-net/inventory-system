@@ -5,7 +5,7 @@
     border-radius: 2px;
 }
  .sidebar{
-     position: fixed;
+     position: relative;
      top: 0;
      left: 0;
      bottom: 0;

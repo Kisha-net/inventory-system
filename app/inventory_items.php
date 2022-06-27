@@ -42,8 +42,8 @@ include 'includes/head.php';
             <td>".$row["item_name"]."</td>
             <td>".$row["stock"]."</td>
             <td>".$row["price"]."</td>
-            <td><a type=\"submit\" class=\"btn btn-primary\"  name=\"update\" onclick =\"update()\">Update Item</a></td>
-            <td><button type=\"button\" class=\"btn btn-secondary\" name=\"Delete\" onclick=\"delete_item()\">Delete Item</button></td>
+            <td><a type=\"submit\" class=\"btn btn-primary\" name=\"update\" onclick =\"update()\">Update Item</a></td>
+            <td><button type=\"submit\" class=\"btn btn-secondary deleteBtn\" dataId=\"$item_id\"  name=\"Delete\">Delete Item</button></td>
           </tr>";
         }
       }
@@ -57,27 +57,26 @@ include 'includes/head.php';
          <script>
           function update(){
             var rowId = event.target.parentNode.parentNode.id;
-           //alert(rowId);
-            window.location.href = "form_inventory.php?item="+rowId;
-          }
-          function delete_item(){
-            var rowId = event.target.parentNode.parentNode.id;
-           //alert(rowId);
-            window.location.href = "form_inventory.php?item="+rowId;
+          //  alert(rowId);
+            window.location.href = "form_inventory.php?item="+rowId+"&action='updateItem'";
           }
         </script> 
-   
 <form>
     <a type="submit" class="btn btn-primary" href ="form_inventory.php">ADD ITEM</a>
 </form>
 
   </div>
+  <script>
+     $(document).ready(function(){
+      $(document).on('click', ".deleteBtn", function(){
+        var item_id=$(this).attr("dataId");
+      $.get("../forms.php?object=InventoryItem&action=deleteItem&item_id="+item_id);
+      location.reload(true);
+      })
+     })
+  </script>
 </section>
-
-
 <?php
   include 'includes/footer.php';
 ?>
 
-   
-    

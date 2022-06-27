@@ -40,16 +40,6 @@
                 </ul>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    // document.getElementById("logout").onClick = "logout()";
-    function logout(){
-        // alert("Are you sure you want to leave!");
-        document.getElementById("logout").preventDefault();
-        document.getElementById("logout_form").submit();
+        <div class="col-md-10"> 
 
-    }
-    
-    document.getElementById("logout_form");
-</script>  
+ 

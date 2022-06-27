@@ -1,2 +1,2 @@
-
--- VALUES ('$price','$stock')";
+<?php
+echo "test";

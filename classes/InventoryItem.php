@@ -38,6 +38,7 @@ class InventoryItem{
         
 
         if($conn->query($sql) === TRUE) {
+
             header("location:app/inventory_items.php?success=Success");
         } 
         else{
@@ -46,5 +47,42 @@ class InventoryItem{
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     } 
+
+    public function deleteItem(){
+        $conn = Database::connect();
+        $item_id=$_GET["item_id"];
+        
+
+        $sql = "DELETE FROM items
+        WHERE item_id = '{$item_id}'";
+        $result = mysqli_query($conn,$sql);
+
+        if($conn->query($sql) === TRUE) {
+            header("location:app/inventory_items.php?success=success");
+        } 
+        else{
+            echo "Could not delete  record";
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        
+
+    } 
+
+    public function getItem(){
+        $conn = Database::connect();
+        $item_id=$_GET["item_id"];
+
+
+        $sql = "SELECT * FROM items WHERE item_id = '{$item_id}' LIMIT 1 ";
+        $result = mysqli_query($conn,$sql);
+
+       
+        if (mysqli_num_rows($result) > 0){
+            $result=mysqli_fetch_assoc($result);
+            echo $result['price'];
+           
+        }
+    }
 }
         
