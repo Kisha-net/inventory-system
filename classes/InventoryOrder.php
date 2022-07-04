@@ -6,14 +6,17 @@ class InventoryOrder{
         $conn = Database::connect();
         $order_id=$_POST["order_id"];
         $order_name = $_POST["order_name"];
+        $order_status = $_POST["order_status"];
+        $total = $_POST["total"];
+        $customer_name = $_POST["customer_name"];
         $order_date = $_POST["order_date"];
-        $price = $_POST["price"];
-        $customer_id = $_POST["customer_id"];
+        $delivery_date = $_POST["delivery_date"];
+        
 
      
     
-        $sql = "INSERT INTO orders (order_id,order_name,order_date,price,customer_id)
-      VALUES ('$order_id','$order_name','$order_date' ,'$price' ,'$customer_id')";
+        $sql = "INSERT INTO orders (order_id,order_name,order_status,total,customer_name,order_date,delivery_date)
+      VALUES ('$order_id','$order_name','$order_status' ,'$total' ,'$customer_name','$order_date','$delivery_date')";
 
 
 
@@ -35,10 +38,10 @@ class InventoryOrder{
         $order_name = $_POST["order_name"];
         $order_date = $_POST["order_date"];
         $price = $_POST["price"];
-        $customer_id = $_POST["customer_id"];
+        $customer_name = $_POST["customer_name"];
 
         $sql = "UPDATE orders
-        SET order_id ='$order_id', order_name = '$order_name' ,order_date='$order_date' ,'price' = '$price','customer_Id' = '$customer_id'
+        SET order_id ='$order_id', order_name = '$order_name' ,order_date='$order_date' ,'price' = '$price','customer_name' = '$customer_name'
         WHERE $order_id = '$order_id'";
         
 
@@ -52,23 +55,20 @@ class InventoryOrder{
         }
     } 
 
+  
     public function delete_order(){
         $conn = Database::connect();
-        $order_id=$_POST["order_id"];
-        $order_name = $_POST["order_name"];
-        $order_date = $_POST["order_date"];
-        $price = $_POST["price"];
-        $customer_id = $_POST["customer_id"];
+        $order_id=$_GET["order_id"];
+       
 
         $sql = "DELETE FROM orders
-        SET order_id ='$order_id', order_name = '$order_name' ,order_date='$order_date' ,'price' = '$price','customer_Id' = '$customer_id'
-        WHERE $order_id = '$order_id'";
+        WHERE $order_id = '{$order_id}'";
         
         
 
         if($conn->query($sql) === TRUE) {
-            // header("location:app/orders.php?success=Success");
-            echo "delete";
+            header("location:app/orders.php?success=Success");
+            // echo "delete";
         } 
         else{
             // header("location:app/signup.php?error=Duplicate email");

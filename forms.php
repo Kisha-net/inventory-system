@@ -94,11 +94,11 @@ if($object == "InventoryOrder"){
             $obj->add_order();
             break;
             
-        case'update_customer':
+        case'update_order':
             $obj->update_order();
             break;
 
-        case'delete_customer':
+        case'delete_order':
             $obj->delete_order();
             break;
 

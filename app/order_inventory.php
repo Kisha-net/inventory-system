@@ -1,77 +1,166 @@
 <?php
 include 'base.php';
 include '../classes/Database.php';
-?>
 
 
-<form action="../forms.php" method="post">
-  <div class=" items form-row">
-  <input type="hidden" value="InventoryOrder" name="object">
-  <input type="hidden"  name="order_id">
-  <input type="hidden"  name="action">
-          
-  <div class="row">
-      <div class="col">
+$order_id = '';
+if(isset($_GET["order"])){
+    $item_id =$_GET["order"] ;
+}
+
+
+if($order_id==''){
+        $action="add_order";
+        $order_id = '';
+        $order_name = '';
+        $order_status = '';
+        $total = '';
+        $customer_id = '';
+        $order_date ='';
+        $delivery_date = '';
+        
+}else{
+
+        $action = $_GET["action"];
+        $action="update_order";
+        $conn = Database::connect(); 
+        $sql = "SELECT * FROM orders WHERE order_id ='$order_id' ";
+        $result = mysqli_query($conn,$sql);
+        echo $action;
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $order_id = $row["order_id"];
+            $order_name = $row["order_name"];
+            $order_status = $row["order_status"];
+            $total = $row["total"];
+            $customer_id = $row["customer_id"];
+            $order_date = $row["order_date"];
+            $delivery_date = $row["delivery_date"];
+            }
+    
+    }
+
+    ?>
+
+<form action="../forms.php" method="post" class="orders">
+  <div class="row form-group">
+    <input type="hidden" value="InventoryOrder" name="object">
+    <input type="hidden" value="<?=$order_id;?>" name="order_id">
+    <input type="hidden" value="<?=$action;?>"  name="action">
+
+
+    <div class="form-group col">
+        <!-- <div class="input-group mb-3"> -->
+        <b><label  for="customer_name" value="<?=$customer_name;?>">Customer Name :</label><br></b>
+          <?php
+        // include '../classes/Database.php';
+        $conn = Database::connect(); 
+        $sql = "SELECT * FROM customers";
+        $result = mysqli_query($conn,$sql);
+        ?>
+        <select class="form-control" class="custom-select" id="inputGroupSelect02">
+        <option value="">Pick a customer</option>
+        <?php
+            while($row = mysqli_fetch_array($result)){
+        ?>
+          <option><?php echo $row["names"];?></option>
+        <?php
+          }
+      ?>
+      </select>
+    </div><br>
+    
+    <div >
+        <input type="hidden" class="form-control" name ="order_date" value="<?=$delivery_date;?>" id="order_date">
+    </div>
+ 
+
+
+    <div class="form-group col">
+        <b><label for="delivery_date">Delivery Date:</label></b>
+        <input type="date" class="form-control"  required name ="delivery_date" value="<?=$delivery_date;?>" id="delivery_date">
+    </div>
+  </div>
+
+
+
+  
+
+  <div class="form-group row">
+      <div class="col-4">
           <b><label for="Item">Item</label></b>
       </div>
-      <div class="col">
+      <div class="col-2">
         <b><label for="price">Price</label></b>
       </div>
-      <div class="col">
+      <div class="col-2">
         <b><label for="quantity">Quantity</label></b>
       </div>
-      <div class="col">
+      <div class="col-2">
         <b><label for="total">Total</label></b>
       </div>
-      <div class="col">
+      <div class="col-2">
         <b><label for="Item">Action</label></b>
       </div>
-
-    <div class="form-row template" id="form" name="form" dataCount="1">
-      <div class="col">
-            <?php
-          $conn = Database::connect(); 
-          $sql = "SELECT * FROM items";
-          $result = mysqli_query($conn,$sql);
-          ?>
-            <tr>
-          <td>
-          <select  name="item[]" class="custom-select" name="select" id="inputGroupSelect02">
-            <?php
-                while($row = mysqli_fetch_array($result)){
-            ?>
-              <option value='<?php echo $row["item_id"];?>' > <?php echo $row["item_name"];?></option>
-            <?php
-              }
-          ?>
-        </select>
-      </div>
-
-      <div class="col">
-        <input type="number" id="price" name="price[]" readonly>
-      </div>
-
-      <div class="col">
-        <input type="number" id="quantity" name="quantity[]" min="1" >
-      </div>
-
-      <div class="col-md-2 d-flex align-items-center text-bold">
-          <div>$<span 
-          
-          class="total">0</span></div>
-        <!-- <input type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
-      </div>
-
-      <div class="col">
-        <button class ="btn btn-primary"><i class="fa-solid fa-trash"></i></button>
-        <!-- <input type="text" class="form-control" name="action[]" id="action" placeholder="Action">  -->
-      </div>
-    
-     <div>
-        <button class="btn btn-secondary btn-sm" id="additem">Add item</button><br>
-      </div>  
-       
   </div>
+  <div class="form-group row template" id="form" name="form" dataCount="1">
+    <div class="col-4">
+          <?php
+        $conn = Database::connect(); 
+        $sql = "SELECT * FROM items";
+        $result = mysqli_query($conn,$sql);
+        ?>
+          <tr>
+        <td>
+        <select  name="item[]" class="custom-select item" name="select" id="inputGroupSelect02">
+          <option value='' > Select an item</option>
+          <?php
+              while($row = mysqli_fetch_array($result)){
+          ?>
+            <option value='<?php echo $row["item_id"];?>' > <?php echo $row["item_name"];?></option>
+          <?php
+            }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-2">
+      <input class="form-control" type="number" type="hidden" id="price" name="price[]" readonly>
+    </div>
+
+    <div class="col-2 iquantity">
+      <input class="form-control" type="number" id="quantity" name="quantity[]" min="1" >
+    </div>
+
+    <div class="col-2 align-items-center text-bold">
+        <div>$<span 
+        
+        value="<?=$total;?>"  class="total">0</span></div>
+      <!-- <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
+    </div>
+
+    <div class="col-2">
+      <button type="button" class ="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+      <!-- <input class="form-control" type="text" class="form-control" name="action[]" id="action" placeholder="Action">  -->
+    </div>
+  
+  </div><br>
+  <div id="button-container">
+    <button class="btn btn-primary btn-sm" id="additem">Add item</button><br>
+  </div>   
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <h2>Total</h2>
+    </div>
+    <div >
+      <h2>$<span id="total">0</span></h2>
+    </div>
+  </div> 
+
+  <div class="form group row pt-4">
+    <button type="submit"  class="btn btn-success btn-lg btn-block" href="orders.php">Complete Order</button><br>
+  </div>  
 
   
 
@@ -99,63 +188,44 @@ include '../classes/Database.php';
       $(clone).attr('id',count);
      
 
-      clone.insertBefore(this);
+      clone.insertBefore("#button-container");
 
   
     
     });
-    $("[name='item[]']").change(function(){
+    $(document).on('change', '[name="item[]"]', function(e){
       // var id = $(this).closest(".template").attr("id");
       // alert(id);
 
       var item_id=$(this).val();
+      var template = $(this).closest(".template");
+
       $.get("../forms.php?object=InventoryItem&action=getItem&item_id="+item_id,function(data){
-        $("[name='price[]']").val(data);
+        // $("[name='price[]']").val(data);
+        $(template).find("[name='price[]']").val(data);
+         $(document).on("change", "[name='quantity[]']", function(e){
+        var row = $(this).closest(template);
+          var price = $(row).find("[name='price[]']").val();
+          var x = parseInt(price);
+          var quantity = $(row).find("[name='quantity[]']").val();
+          var y = parseInt(quantity);
+          var total = price * quantity;
+          $(template).find(".total").html(total);
+
+        //  alert(total)
+          
+         })
+
       })
+
+  
     });
   
-    $(document).on('click', "#test", function(e){
-     alert($(".template").length);
-    });
+    
   })
 
-// }
 </script>
-   <br>
-  <div class="form-group col-md-6">
-      <!-- <div class="input-group mb-3"> -->
-      <b><label for="price">Customer Name :</label><br></b>
-        <?php
-      // include '../classes/Database.php';
-      $conn = Database::connect(); 
-      $sql = "SELECT * FROM customers";
-      $result = mysqli_query($conn,$sql);
-      ?>
-      <select class="form-control" class="custom-select" id="inputGroupSelect02">
-      <?php
-          while($row = mysqli_fetch_array($result)){
-      ?>
-        <option><?php echo $row["name"];?></option>
-      <?php
-        }
-    ?>
-    </select>
-  </div>
-      <div class="form-group ">
-          <b><label for="order_date">order Date:</label></b>
-          <input type="date" class="form-control"  required name ="order_date" id="order_date">
-      </div>
-
-    <div class="items form-row">
-  <div class="items">
   
-  <div class="d-flex justify-content-between align-items-center">
-      <div>
-        <h2>Total</h2>
-      </div>
-      <div >
-        <h2>$<span id="total">0</span></h2>
-      </div>
 </div>
 </div>
  
