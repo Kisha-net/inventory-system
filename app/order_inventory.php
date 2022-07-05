@@ -13,9 +13,8 @@ if($order_id==''){
         $action="add_order";
         $order_id = '';
         $order_name = '';
-        $order_status = '';
         $total = '';
-        $customer_id = '';
+        $customer_name = '';
         $order_date ='';
         $delivery_date = '';
         
@@ -31,9 +30,8 @@ if($order_id==''){
             $row = mysqli_fetch_assoc($result);
             $order_id = $row["order_id"];
             $order_name = $row["order_name"];
-            $order_status = $row["order_status"];
             $total = $row["total"];
-            $customer_id = $row["customer_id"];
+            $customer_name = $row["customer_name"];
             $order_date = $row["order_date"];
             $delivery_date = $row["delivery_date"];
             }
@@ -51,19 +49,20 @@ if($order_id==''){
 
     <div class="form-group col">
         <!-- <div class="input-group mb-3"> -->
-        <b><label  for="customer_name" value="<?=$customer_name;?>">Customer Name :</label><br></b>
+        <b><label  for="customer_name" >Customer Name :</label><br></b>
           <?php
         // include '../classes/Database.php';
         $conn = Database::connect(); 
         $sql = "SELECT * FROM customers";
         $result = mysqli_query($conn,$sql);
+        
         ?>
-        <select class="form-control" class="custom-select" id="inputGroupSelect02">
+        <select class="form-control" value="<?=$customer_name;?>" name="customer_name" class="custom-select" id="inputGroupSelect02">
         <option value="">Pick a customer</option>
         <?php
             while($row = mysqli_fetch_array($result)){
         ?>
-          <option><?php echo $row["names"];?></option>
+          <option ><?php echo $row["names"];?></option>
         <?php
           }
       ?>
@@ -71,7 +70,7 @@ if($order_id==''){
     </div><br>
     
     <div >
-        <input type="hidden" class="form-control" name ="order_date" value="<?=$delivery_date;?>" id="order_date">
+        <input type="hidden" class="form-control" name ="order_date" value="<?=date("d/m/Y")?>" id="order_date">
     </div>
  
 
@@ -109,15 +108,17 @@ if($order_id==''){
         $conn = Database::connect(); 
         $sql = "SELECT * FROM items";
         $result = mysqli_query($conn,$sql);
+
+
         ?>
           <tr>
         <td>
-        <select  name="item[]" class="custom-select item" name="select" id="inputGroupSelect02">
+        <select  name="items_"  class="custom-select item"  id="inputGroupSelect02">
           <option value='' > Select an item</option>
           <?php
               while($row = mysqli_fetch_array($result)){
           ?>
-            <option value='<?php echo $row["item_id"];?>' > <?php echo $row["item_name"];?></option>
+            <option value='<?php echo $row["item_id"];?>'> <?php echo $row["item_name"];?></option>
           <?php
             }
         ?>
@@ -135,12 +136,12 @@ if($order_id==''){
     <div class="col-2 align-items-center text-bold">
         <div>$<span 
         
-        value="<?=$total;?>"  class="total">0</span></div>
+       name ="total[]" class="total">0</span></div>
       <!-- <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
     </div>
 
-    <div class="col-2">
-      <button type="button" class ="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+    <div class="col-2 deleteItemButton">
+      <button type="button" class ="btn btn-danger "><i class="fa-solid fa-trash"></i></button>
       <!-- <input class="form-control" type="text" class="form-control" name="action[]" id="action" placeholder="Action">  -->
     </div>
   
@@ -172,7 +173,7 @@ if($order_id==''){
       var control= $("#form");
       var clone= $(control).clone();
       
-      $(clone).find("[name='item[]']").val("0");
+      $(clone).find("[name='items_']").val("0");
       $(clone).find("[name='price[]']").val("0");
       $(clone).find("[name='quantity[]']").val("0");
       $(clone).find("[name='total[]']").val("0");
@@ -193,15 +194,12 @@ if($order_id==''){
   
     
     });
-    $(document).on('change', '[name="item[]"]', function(e){
-      // var id = $(this).closest(".template").attr("id");
-      // alert(id);
-
+    $(document).on('change', '[name="items_"]', function(e){
+    
       var item_id=$(this).val();
       var template = $(this).closest(".template");
 
       $.get("../forms.php?object=InventoryItem&action=getItem&item_id="+item_id,function(data){
-        // $("[name='price[]']").val(data);
         $(template).find("[name='price[]']").val(data);
          $(document).on("change", "[name='quantity[]']", function(e){
         var row = $(this).closest(template);
@@ -210,13 +208,21 @@ if($order_id==''){
           var quantity = $(row).find("[name='quantity[]']").val();
           var y = parseInt(quantity);
           var total = price * quantity;
-          $(template).find(".total").html(total);
+          $(row).find("[name='total[]']").html(total);
 
-        //  alert(total)
           
          })
+       
+        
 
       })
+      
+
+      $(document).on("click", ".deleteItemButton", function(e){
+        e.preventDefault();
+          template.remove();
+        
+    });
 
   
     });

@@ -19,7 +19,6 @@ include 'base.php';
         <tr>
           <th scope="col">Order Id</th>
           <th scope="col">Order Name</th>
-          <th scope="col">Order Status</th>
           <th scope="col">Total</th>
           <th scope="col">customer Name</th>
           <th scope="col">Order Date</th>
@@ -35,9 +34,8 @@ include 'base.php';
           while($row = mysqli_fetch_assoc($result)){
             $order_id = $row["order_id"];
             $order_name = $row["order_name"];
-            $order_status = $row["order_status"];
             $total = $row["total"];
-            $customer_id = $row["customer_id"];
+            $customer_name = $row["customer_name"];
             $order_date = $row["order_date"];
             $delivery_date = $row["delivery_date"];
           
@@ -46,9 +44,8 @@ include 'base.php';
             echo " <tr id='$order_id'>
               <td>".$row["order_id"]."</td>
               <td>".$row["order_name"]."</td>
-              <td>".$row["order_status"]."</td>
               <td>".$row["total"]."</td>
-              <td>".$row["customer_id"]."</td>
+              <td>".$row["customer_name"]."</td>
               <td>".$row["order_date"]."</td>
               <td>".$row["delivery_date"]."</td>
 
@@ -82,6 +79,7 @@ include 'base.php';
       $(document).on('click', ".deleteBtn", function(){
         var order_id=$(this).attr("dataId");
       $.get("../forms.php?object=InventoryOrder&action=delete_order&order_id="+order_id);
+      
       location.reload(true);
       })
      })

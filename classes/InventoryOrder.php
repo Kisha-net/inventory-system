@@ -4,19 +4,25 @@ include 'Database.php';
 class InventoryOrder{
     public function add_order(){
         $conn = Database::connect();
-        $order_id=$_POST["order_id"];
+        $item_id=$_POST["items_"];
+       
+        
         $order_name = $_POST["order_name"];
-        $order_status = $_POST["order_status"];
         $total = $_POST["total"];
         $customer_name = $_POST["customer_name"];
         $order_date = $_POST["order_date"];
         $delivery_date = $_POST["delivery_date"];
-        
 
+       
+        $query_name = "SELECT item_name FROM items WHERE item_id='$item_id'";
+        $result_name = mysqli_fetch_assoc( $conn->query($query_name));
+        $order_name = $result_name['item_name'];
      
     
-        $sql = "INSERT INTO orders (order_id,order_name,order_status,total,customer_name,order_date,delivery_date)
-      VALUES ('$order_id','$order_name','$order_status' ,'$total' ,'$customer_name','$order_date','$delivery_date')";
+        $sql = "INSERT INTO orders (order_name,total,customer_name,order_date,delivery_date)
+      VALUES ('$order_name','$total' ,'$customer_name','$order_date','$delivery_date')";
+
+      
 
 
 
@@ -77,4 +83,5 @@ class InventoryOrder{
         }
     } 
 }
-        
+?>
+   
