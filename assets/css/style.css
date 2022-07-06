@@ -5,7 +5,7 @@
     border-radius: 2px;
 }
  .sidebar{
-     position: fixed;
+     position: relative;
      top: 0;
      left: 0;
      bottom: 0;
@@ -20,6 +20,10 @@
  }
 /* items.css */
  .items{
+    text-align: center;
+    padding:70px;
+  }
+  .orders{
     text-align: center;
     padding:70px;
   }

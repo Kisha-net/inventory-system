@@ -49,9 +49,58 @@ if($object == "InventoryItem"){
             $obj->updateItem();
             break;
 
-        // case'deleteItem':
-        //     $obj->deleteItem();
-        //     break;
+        case'deleteItem':
+            $obj->deleteItem();
+            break;
+
+        case'getItem':
+            $obj->getItem();
+            break;
+            
+        default:
+            echo "Your favorite color is neither red, blue, nor green!";
+
+    }
+}
+
+if($object == "InventoryCustomer"){
+    include 'classes/InventoryCustomer.php';
+    $obj=new InventoryCustomer();
+
+    switch($action){
+        case 'add_customer':
+            $obj->add_customer();
+            break;
+            
+        case'update_customer':
+            $obj->update_customer();
+            break;
+
+        case'delete_customer':
+            $obj->delete_customer();
+            break;
+
+        default:
+            echo "Your favorite color is neither red, blue, nor green!";
+
+    }
+}
+if($object == "InventoryOrder"){
+    include 'classes/InventoryOrder.php';
+    $obj=new InventoryOrder();
+
+    switch($action){
+        case 'add_order':
+            $obj->add_order();
+            break;
+            
+        case'update_order':
+            $obj->update_order();
+            break;
+
+        case'delete_order':
+            $obj->delete_order();
+            break;
 
         default:
             echo "Your favorite color is neither red, blue, nor green!";

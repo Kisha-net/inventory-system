@@ -10,7 +10,7 @@
         <ul class ="navbar-nav px-3">
             <li class ="nav-item text-nowrap">   
                 <form id="logout_form" name="logout" method="post" action="../index.php" >
-                    <a class="nav-link" href="../index.php" name="logout" id="logout" onclick="logout()" >LOG OUT</a>
+                    <a class="nav-link" href="../logout.php" name="logout" id="logout" onclick="logout()" >LOG OUT</a>
                     <input type="hidden" value="Authenticate" name="object">
                     <input type="hidden" value="logout" name="action">
                 </form>
@@ -40,16 +40,6 @@
                 </ul>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    // document.getElementById("logout").onClick = "logout()";
-    function logout(){
-        // alert("Are you sure you want to leave!");
-        document.getElementById("logout").preventDefault();
-        document.getElementById("logout_form").submit();
+        <div class="col-md-10"> 
 
-    }
-    
-    document.getElementById("logout_form");
-</script>  
+ 
