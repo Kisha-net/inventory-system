@@ -6,30 +6,16 @@ class InventoryOrder{
         $conn = Database::connect();
 
         // Get all parameters passed by POST request 
-        $customer_id=$_POST["customer_name"];
+        $customer_id=$_POST["customer_id"];
         $delivery_date = $_POST["delivery_date"];
         $order_total = $_POST["total"];
-        $item = $_POST["item[]"];
-        $price = $_POST["price[]"];
-        $quantity = $_POST["quantity[]"];
-        $item_total = $_POST["total[]"];
+        $item = $_POST["item"];
+        $price = $_POST["price"];
+        $quantity = $_POST["quantity"];
+        $item_total = $_POST["total"];
         $order_date = $_POST["order_date"];
         
         // Insert items in order table and get order_id
-        $customer_name = $_POST["customer_name"];
-
-        $item_id=$_POST["items_"];
-       
-        
-        $order_name = $_POST["order_name"];
-      
-
-       
-        $query_name = "SELECT item_name FROM items WHERE item_id='$item_id'";
-        $result_name = mysqli_fetch_assoc( $conn->query($query_name));
-        $order_name = $result_name['item_name'];
-
-        
         $sql = "INSERT INTO orders (order_name,customer_name,customer_id,order_date,delivery_date,order_total,item,price,quantity)
         VALUES ('$order_name','$customer_name','$customer_id','$order_date' ,'$delivery_date','$order_total','$item','$price','$quantity','$item_total')";
        

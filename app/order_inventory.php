@@ -57,16 +57,16 @@ if($order_id==''){
         $result = mysqli_query($conn,$sql);
         
         ?>
-        <select class="form-control"  name="customer_name"  class="custom-select" id="inputGroupSelect02">
-        <option value="">Pick a customer</option>
-        <?php
-            while($row = mysqli_fetch_array($result)){
+        <select class="form-control"  name="customer_id"  class="custom-select" id="inputGroupSelect02">
+          <option value="">Pick a customer</option>
+          <?php
+              while($row = mysqli_fetch_array($result)){
+          ?>
+            <option value='<?php echo $row["customer_id"];?>' ><?php echo $row["names"];?></option>
+          <?php
+            }
         ?>
-          <option value='<?php echo $row["customer_id"];?>' ><?php echo $row["names"];?></option>
-        <?php
-          }
-      ?>
-      </select>
+        </select>
     </div><br>
     
     <div >
@@ -77,7 +77,7 @@ if($order_id==''){
 
     <div class="form-group col">
         <b><label for="delivery_date">Delivery Date:</label></b>
-        <input type="date" class="form-control"  required name ="delivery_date" value="<?=$delivery_date;?>" id="delivery_date">
+        <input type="date" class="form-control"  required name="delivery_date" id="delivery_date">
     </div>
   </div>
 
@@ -113,7 +113,7 @@ if($order_id==''){
         ?>
           <tr>
         <td>
-        <select  name="items_"  class="custom-select item"  id="inputGroupSelect02">
+        <select  name="item[]"  class="custom-select item"  id="inputGroupSelect02">
           <option value='' > Select an item</option>
           <?php
               while($row = mysqli_fetch_array($result)){
@@ -134,15 +134,12 @@ if($order_id==''){
     </div>
 
     <div class="col-2 align-items-center text-bold">
-        <div>$<span 
-        
-       name ="total[]" id ="item_total" class="total">0</span></div>
-      <!-- <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
+        <div>$<span id ="item_total" class="total">0</span></div>
+        <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total">
     </div>
 
     <div class="col-2 deleteItemButton">
       <button type="button" class ="btn btn-danger "><i class="fa-solid fa-trash"></i></button>
-      <!-- <input class="form-control" type="text" class="form-control" name="action[]" id="action" placeholder="Action">  -->
     </div>
   
   </div><br>
@@ -173,7 +170,7 @@ if($order_id==''){
       var control= $("#form");
       var clone= $(control).clone();
       
-      $(clone).find("[name='items_']").val("0");
+      $(clone).find("[name='item[]']").val("0");
       $(clone).find("[name='price[]']").val("0");
       $(clone).find("[name='quantity[]']").val("0");
       $(clone).find("[name='total[]']").val("0");
@@ -194,7 +191,7 @@ if($order_id==''){
   
     
     });
-    $(document).on('change', '[name="items_"]', function(e){
+    $(document).on('change', '[name="item[]"]', function(e){
     
       var item_id=$(this).val();
       var template = $(this).closest(".template");
