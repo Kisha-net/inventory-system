@@ -13,34 +13,30 @@ class InventoryOrder{
         $price = $_POST["price[]"];
         $quantity = $_POST["quantity[]"];
         $item_total = $_POST["total[]"];
+        $order_date = $_POST["order_date"];
         
-
-
-
-
         // Insert items in order table and get order_id
+        $customer_name = $_POST["customer_name"];
 
-        // Loop through the array of items and insert them into order_items table
-
-
-        
         $item_id=$_POST["items_"];
        
         
         $order_name = $_POST["order_name"];
-        $total = $_POST["total"];
-        $customer_name = $_POST["customer_name"];
-        $order_date = $_POST["order_date"];
-        $delivery_date = $_POST["delivery_date"];
+      
 
        
         $query_name = "SELECT item_name FROM items WHERE item_id='$item_id'";
         $result_name = mysqli_fetch_assoc( $conn->query($query_name));
         $order_name = $result_name['item_name'];
+
+        
+        $sql = "INSERT INTO orders (order_name,customer_name,customer_id,order_date,delivery_date,order_total,item,price,quantity)
+        VALUES ('$order_name','$customer_name','$customer_id','$order_date' ,'$delivery_date','$order_total','$item','$price','$quantity','$item_total')";
+       
+
      
-    
-        $sql = "INSERT INTO orders (order_name,total,customer_name,order_date,delivery_date)
-      VALUES ('$order_name','$total' ,'$customer_name','$order_date','$delivery_date')";
+     // Loop through the array of items and insert them into order_items table
+       
 
       
 

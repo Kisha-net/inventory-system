@@ -57,7 +57,7 @@ if($order_id==''){
         $result = mysqli_query($conn,$sql);
         
         ?>
-        <select class="form-control" value="<?=$customer_name;?>" name="customer_name" class="custom-select" id="inputGroupSelect02">
+        <select class="form-control"  name="customer_name"  class="custom-select" id="inputGroupSelect02">
         <option value="">Pick a customer</option>
         <?php
             while($row = mysqli_fetch_array($result)){
