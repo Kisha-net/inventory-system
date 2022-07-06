@@ -12,9 +12,8 @@ if(isset($_GET["order"])){
 if($order_id==''){
         $action="add_order";
         $order_id = '';
-        $order_name = '';
         $total = '';
-        $customer_name = '';
+        $customer_id = '';
         $order_date ='';
         $delivery_date = '';
         
@@ -29,9 +28,8 @@ if($order_id==''){
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $order_id = $row["order_id"];
-            $order_name = $row["order_name"];
             $total = $row["total"];
-            $customer_name = $row["customer_name"];
+            $customer_id = $row["customer_name"];
             $order_date = $row["order_date"];
             $delivery_date = $row["delivery_date"];
             }
@@ -134,8 +132,8 @@ if($order_id==''){
     </div>
 
     <div class="col-2 align-items-center text-bold">
-        <div>$<span id ="item_total" class="total">0</span></div>
-        <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total">
+        <div>$<span id ="item_total" name="total[]" id="total" class="total">0</span></div>
+        <!-- <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
     </div>
 
     <div class="col-2 deleteItemButton">

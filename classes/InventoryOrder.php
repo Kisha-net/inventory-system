@@ -16,8 +16,8 @@ class InventoryOrder{
         $order_date = $_POST["order_date"];
         
         // Insert items in order table and get order_id
-        $sql = "INSERT INTO orders (order_name,customer_name,customer_id,order_date,delivery_date,order_total,item,price,quantity)
-        VALUES ('$order_name','$customer_name','$customer_id','$order_date' ,'$delivery_date','$order_total','$item','$price','$quantity','$item_total')";
+        $sql = "INSERT INTO orders (customer_id,order_date,delivery_date,order_total,item,price,quantity,item_total)
+        VALUES ('$customer_id','$order_date' ,'$delivery_date','$order_total','$item','$price','$quantity','$item_total')";
        
 
      

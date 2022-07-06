@@ -18,9 +18,8 @@ include 'base.php';
       <thead class="thead-dark">
         <tr>
           <th scope="col">Order Id</th>
-          <th scope="col">Order Name</th>
           <th scope="col">Total</th>
-          <th scope="col">customer Name</th>
+          <th scope="col">customer ID</th>
           <th scope="col">Order Date</th>
           <th scope="col">Delivery Date</th>
           
@@ -33,9 +32,8 @@ include 'base.php';
         if (mysqli_num_rows($result) > 0) {
           while($row = mysqli_fetch_assoc($result)){
             $order_id = $row["order_id"];
-            $order_name = $row["order_name"];
             $order_total = $row["order_total"];
-            $customer_name = $row["customer_name"];
+            $customer_id = $row["customer_id"];
             $order_date = $row["order_date"];
             $delivery_date = $row["delivery_date"];
           
@@ -43,9 +41,8 @@ include 'base.php';
 
             echo " <tr id='$order_id'>
               <td>".$row["order_id"]."</td>
-              <td>".$row["order_name"]."</td>
               <td>".$row["order_total"]."</td>
-              <td>".$row["customer_name"]."</td>
+              <td>".$row["customer_id"]."</td>
               <td>".$row["order_date"]."</td>
               <td>".$row["delivery_date"]."</td>
 
