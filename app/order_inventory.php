@@ -62,7 +62,7 @@ if($order_id==''){
         <?php
             while($row = mysqli_fetch_array($result)){
         ?>
-          <option ><?php echo $row["names"];?></option>
+          <option value='<?php echo $row["customer_id"];?>' ><?php echo $row["names"];?></option>
         <?php
           }
       ?>
