@@ -136,7 +136,7 @@ if($order_id==''){
     <div class="col-2 align-items-center text-bold">
         <div>$<span 
         
-       name ="total[]" class="total">0</span></div>
+       name ="total[]" id ="item_total" class="total">0</span></div>
       <!-- <input class="form-control" type="text" class="form-control" name="total[]" id="total" placeholder="Total"> -->
     </div>
 
@@ -150,12 +150,12 @@ if($order_id==''){
     <button class="btn btn-primary btn-sm" id="additem">Add item</button><br>
   </div>   
 
-  <div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center" >
     <div>
       <h2>Total</h2>
     </div>
     <div >
-      <h2>$<span id="total">0</span></h2>
+      <h2>$<span name="total" id="order_total">0</span></h2>
     </div>
   </div> 
 

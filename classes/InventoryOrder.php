@@ -6,15 +6,13 @@ class InventoryOrder{
         $conn = Database::connect();
 
         // Get all parameters passed by POST request 
-        $customer_id=$_GET["customer_id"];
-        $customer = "SELECT * FROM customers WHERE customer_id = '{$customer_id}'";
-
+        $customer_id=$_POST["customer_name"];
         $delivery_date = $_POST["delivery_date"];
-        $total = $_POST["total"];
+        $order_total = $_POST["total"];
         $item = $_POST["item[]"];
         $price = $_POST["price[]"];
         $quantity = $_POST["quantity[]"];
-        $total = $_POST["total[]"];
+        $item_total = $_POST["total[]"];
         
 
 
