@@ -6,7 +6,7 @@ class Database
     {
         $servername = "localhost";
         $username = "root";
-        $password = "";
+        $password = "root";
         $dbname = "inventory_system";
         
         // Create connection

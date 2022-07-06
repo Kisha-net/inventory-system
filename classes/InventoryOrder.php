@@ -4,6 +4,16 @@ include 'Database.php';
 class InventoryOrder{
     public function add_order(){
         $conn = Database::connect();
+
+        // Get all parameters passed by POST request 
+
+
+        // Insert items in order table and get order_id
+
+        // Loop through the array of items and insert them into order_items table
+
+
+        
         $item_id=$_POST["items_"];
        
         
