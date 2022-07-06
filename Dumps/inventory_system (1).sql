@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2022 at 09:02 AM
+-- Generation Time: Jul 06, 2022 at 03:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -41,7 +41,8 @@ INSERT INTO `customers` (`customer_id`, `names`, `email`) VALUES
 (1, 'Antoinette Akinyi', 'antoinette@gmail.com'),
 (3, 'kysher', 'kysher@gmail.com'),
 (5, 'person y', 'y@gmail.com'),
-(6, 'person XY', 'XY@gmail.com');
+(6, 'person XY', 'XY@gmail.com'),
+(7, 'person A', 'a@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -74,21 +75,15 @@ INSERT INTO `items` (`item_id`, `item_name`, `stock`, `price`) VALUES
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `order_name` varchar(100) DEFAULT NULL,
-  `order_status` varchar(255) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL,
-  `customer_name` varchar(255) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `order_total` int(11) DEFAULT NULL,
   `order_date` varchar(255) DEFAULT NULL,
-  `delivery_date` varchar(255) DEFAULT NULL
+  `delivery_date` varchar(255) DEFAULT NULL,
+  `item` varchar(255) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `item_total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `order_name`, `order_status`, `total`, `customer_name`, `order_date`, `delivery_date`) VALUES
-(1038, 'bottle', NULL, 0, 'person y', '05/07/2022', '2022-07-21'),
-(1039, 'phone', NULL, 0, 'person XY', '05/07/2022', '2022-07-21');
 
 -- --------------------------------------------------------
 
@@ -168,7 +163,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -180,7 +175,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1040;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1048;
 
 --
 -- AUTO_INCREMENT for table `users`
